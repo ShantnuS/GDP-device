@@ -2,12 +2,16 @@
 import time
 
 def read_temp():
-    temp = 1
+    temp1 = 1
+    temp2 = 2
+    temp3 = 3
     #read temp somehow
-    return temp
+    return [temp1,temp2,temp3]
 
 def transmit(temp):
-    #transmit temp somehow 
+    #transmit temp somehow
+    temp1 = temp[0]
+    print("Transmitted!!!!") 
     return True
 
 def main():
