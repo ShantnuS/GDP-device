@@ -3,15 +3,18 @@ import main
 import urllib.request
 import json
 import os
+import requests
 
 tank_id_file = "tank_id.txt"
 
+#requests google to create a new tank_id 
 def get_tank_from_google():
-    item  = json.load(urllib.request.urlopen('http://iglooboiler.appspot.com/tank'))
-    tank_id = item[0]['id']
-    print("GOT ID FROm google")
+    payload = {'key1': 'value1', 'key2': 'value2'}
+    r = requests.post("http://iglooboiler.appspot.com/tank", data=payload)
+    tank_id = r.text
     return tank_id
 
+#Returns tank_id from tank_id_file
 def get_tank_from_file():
     if not os.path.isfile(tank_id_file):
         tank_id = ""
@@ -22,6 +25,7 @@ def get_tank_from_file():
     
     return tank_id
 
+#Gets ID from file if available, otherwise creates new ID by requesting google
 def get_tank_id():
     tank_id = get_tank_from_file()
     if tank_id ==  "": 
@@ -33,6 +37,6 @@ def get_tank_id():
 def run():
     tank_id = get_tank_id()
     print(tank_id)
-    main.main(tank_id) 
+    #main.main(tank_id) 
 
 if __name__ == "__main__": run()
