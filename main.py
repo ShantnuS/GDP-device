@@ -3,26 +3,22 @@ import time
 import json
 import urllib.request
 
-def read_temp():
-    temp1 = 1
-    temp2 = 2
-    temp3 = 3
-    #read temp somehow
-    return [temp1,temp2,temp3]
+def read_sensor1():
+    return 1
 
-def transmit(temp):
-    #transmit temp somehow
-    temp1 = temp[0]
-    print("Transmitted!!!!") 
-    return True
+def read_sensor2():
+    return 2
 
-def trasmit_test(tank_id, sensor1, sensor2, sensor3):
-    body = {'tankId': tank_id, 'sensor1': sensor1, 'sensor2': sensor2, 'sensor3': sensor3, 'timeTaken': '4343'}
+def read_sensor3():
+    return 3
+
+def transmit(tank_id, sensor1, sensor2, sensor3):
+    body = {'tankId': tank_id, 'sensor1': sensor1, 'sensor2': sensor2, 'sensor3': sensor3}
     myurl = "http://iglooboiler.appspot.com/readings"
     req = urllib.request.Request(myurl)
     req.add_header('Content-Type', 'application/json; charset=utf-8')
     jsondata = json.dumps(body)
-    jsondataasbytes = jsondata.encode('utf-8')   # needs to be bytes
+    jsondataasbytes = jsondata.encode('utf-8')
     req.add_header('Content-Length', len(jsondataasbytes))
     response = urllib.request.urlopen(req, jsondataasbytes)
     return response
@@ -32,13 +28,14 @@ def get_test():
     return item
 
 def main(tank_id):
-    print(trasmit_test(tank_id, 11,22,33))
-    #print(get_test())
-
-
-'''
     while True:
-        temp = read_temp()
-        transmit(temp)
+        #Read sensors
+        sensor1 = read_sensor1()
+        sensor2 = read_sensor2()
+        sensor3 = read_sensor3()
+
+        #Transmit to google app engine
+        transmit(tank_id, sensor1, sensor2, sensor3)
+
+        #Sleepy weepy!
         time.sleep(60)
-'''
