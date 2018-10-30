@@ -3,7 +3,7 @@ import main
 import json
 import os
 from setup import setup
-setup() #This is needed if the libraries below are not installed
+#setup() #This is needed if the libraries below are not installed
 import requests
 import urllib.request
 

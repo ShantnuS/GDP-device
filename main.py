@@ -14,6 +14,7 @@ def read_sensor3():
 
 def transmit(tank_id, sensor1, sensor2, sensor3):
     body = {'tankId': tank_id, 'sensor1': sensor1, 'sensor2': sensor2, 'sensor3': sensor3}
+    print(body) #DELETE THIS MAYBLE?
     myurl = "http://iglooboiler.appspot.com/readings"
     req = urllib.request.Request(myurl)
     req.add_header('Content-Type', 'application/json; charset=utf-8')
@@ -38,4 +39,4 @@ def main(tank_id):
         transmit(tank_id, sensor1, sensor2, sensor3)
 
         #Sleepy weepy!
-        time.sleep(60)
+        time.sleep(10)
