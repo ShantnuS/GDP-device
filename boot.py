@@ -1,9 +1,11 @@
 #One time setup when device boots 
 import main 
-import urllib.request
 import json
 import os
+from setup import setup
+setup() #This is needed if the libraries below are not installed
 import requests
+import urllib.request
 
 tank_id_file = "tank_id"
 
