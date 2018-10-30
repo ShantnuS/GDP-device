@@ -18,22 +18,17 @@ def transmit(temp):
 
 def create_tank():
     
-    return r
+    return True
 
-def get_tank():
-    item  = json.load(urllib.request.urlopen('http://iglooboiler.appspot.com/tank'))
-    return item
 
 def trasmit_test(tank_id, sensor1, sensor2, sensor3):
     body = {'tankId': tank_id, 'sensor1': sensor1, 'sensor2': sensor2, 'sensor3': sensor3, 'timeTaken': '4343'}
-    print(body)
     myurl = "http://iglooboiler.appspot.com/readings"
     req = urllib.request.Request(myurl)
     req.add_header('Content-Type', 'application/json; charset=utf-8')
     jsondata = json.dumps(body)
     jsondataasbytes = jsondata.encode('utf-8')   # needs to be bytes
     req.add_header('Content-Length', len(jsondataasbytes))
-    print (jsondataasbytes)
     response = urllib.request.urlopen(req, jsondataasbytes)
     return response
 
@@ -41,12 +36,9 @@ def get_test():
     item  = json.load(urllib.request.urlopen('http://iglooboiler.appspot.com/readings'))
     return item
 
-def main():
-    req = get_tank()
-    print(req)
-    tank_id = req[0]['id']
-    print(trasmit_test(tank_id))
-    print(get_test())
+def main(tank_id):
+    print(trasmit_test(tank_id, 11,22,33))
+    #print(get_test())
 
 
 '''
