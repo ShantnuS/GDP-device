@@ -5,7 +5,7 @@ import json
 import os
 import requests
 
-tank_id_file = "tank_id.txt"
+tank_id_file = "tank_id"
 
 #requests google to create a new tank_id 
 def get_tank_from_google():
@@ -36,7 +36,6 @@ def get_tank_id():
 
 def run():
     tank_id = get_tank_id()
-    print(tank_id)
-    #main.main(tank_id) 
+    main.main(tank_id) 
 
 if __name__ == "__main__": run()

@@ -16,11 +16,6 @@ def transmit(temp):
     print("Transmitted!!!!") 
     return True
 
-def create_tank():
-    
-    return True
-
-
 def trasmit_test(tank_id, sensor1, sensor2, sensor3):
     body = {'tankId': tank_id, 'sensor1': sensor1, 'sensor2': sensor2, 'sensor3': sensor3, 'timeTaken': '4343'}
     myurl = "http://iglooboiler.appspot.com/readings"
