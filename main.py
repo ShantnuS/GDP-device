@@ -39,4 +39,4 @@ def main(tank_id):
         transmit(tank_id, sensor1, sensor2, sensor3)
 
         #Sleepy weepy!
-        time.sleep(10)
+        time.sleep(60)
