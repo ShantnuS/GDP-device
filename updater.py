@@ -37,11 +37,11 @@ def compare_git_hash():
 
 def update():
     while True:
-        time.sleep(10)
         os.system("git pull origin live")
         if not compare_git_hash():
             print("Updated system!")
             print("REBOOTING!")
-            #os.system("sudo reboot")
+            os.system("sudo reboot")
+        time.sleep(600)
     
 if __name__ == '__main__': update()
