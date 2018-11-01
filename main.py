@@ -2,15 +2,19 @@
 import time
 import json
 import urllib.request
+from ds18b20 import DS18B20
 
 def read_sensor1():
-    return 1
+    x = DS18B20()
+    return x.tempC(0)
 
 def read_sensor2():
-    return 2
+    x = DS18B20()
+    return x.tempC(1)
 
 def read_sensor3():
-    return 3
+    x = DS18B20()
+    return x.tempC(2)
 
 def transmit(tank_id, sensor1, sensor2, sensor3):
     body = {'tankId': tank_id, 'sensor1': sensor1, 'sensor2': sensor2, 'sensor3': sensor3}
