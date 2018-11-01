@@ -32,7 +32,7 @@ def get_tank_id():
     tank_id = get_tank_from_file()
     if tank_id ==  "": 
         tank_id = get_tank_from_google()
-        with open(tank_id_file, "a") as writer:
+        with open(tank_id_file, "w+") as writer:
             writer.write(str(tank_id) + "\n")
     return tank_id
 
