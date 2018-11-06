@@ -1,6 +1,7 @@
 #Main script for reading and trasmitting temperatures 
 import time
 import json
+import logging 
 import urllib.request
 from ds18b20 import DS18B20
 
@@ -18,7 +19,7 @@ def read_sensor3():
 
 def transmit(tank_id, sensor1, sensor2, sensor3):
     body = {'tankId': tank_id, 'sensor1': sensor1, 'sensor2': sensor2, 'sensor3': sensor3}
-    print(body) #DELETE THIS MAYBLE?
+    logging.info(str(body))
     myurl = "http://iglooboiler.appspot.com/readings"
     req = urllib.request.Request(myurl)
     req.add_header('Content-Type', 'application/json; charset=utf-8')
@@ -33,6 +34,8 @@ def get_test():
     return item
 
 def main(tank_id):
+    logging.basicConfig(filename='main.log', format="%(asctime)s %(levelname)s: %(message)s",level=logging.DEBUG)   
+
     while True:
         #Read sensors
         sensor1 = read_sensor1()
@@ -43,7 +46,7 @@ def main(tank_id):
         try:
                 transmit(tank_id, sensor1, sensor2, sensor3)
         except: 
-                print("Error: could not transmit!")
+                logging.debug('Could not transmit!')
 
         #Sleepy weepy!
         time.sleep(60)

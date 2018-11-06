@@ -1,6 +1,7 @@
 #Updates the OS of the raspberry Pi 
 import os
 import time 
+import logging
 
 git_hash_file = "git_hash"
 
@@ -21,7 +22,7 @@ def get_git_hash_from_file():
 
 #updates the git_hash file with current hash
 def update_git_hash_file():
-    print("Updating git hash file!")
+    logging.info("Updated git hash file!")
     git_hash = current_git_hash()
     with open(git_hash_file, "w+") as writer:
         writer.write(str(git_hash) + "\n")
@@ -36,15 +37,17 @@ def compare_git_hash():
         return True
 
 def update():
+    logging.basicConfig(filename='updater.log', format="%(asctime)s %(levelname)s: %(message)s" ,level=logging.DEBUG)
+
     while True:
         try:
             os.system("git pull origin live")
             if not compare_git_hash():
-                print("Updated system!")
-                print("REBOOTING!")
+                logging.info("Updated system!")
+                logging.info("REBOOTING!")
                 os.system("sudo reboot")
         except:
-            print("Error: could not update!")
+            logging.debug("Could not update!")
         time.sleep(600)
     
 if __name__ == '__main__': update()
