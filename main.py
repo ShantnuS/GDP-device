@@ -40,7 +40,10 @@ def main(tank_id):
         sensor3 = read_sensor3()
 
         #Transmit to google app engine
-        transmit(tank_id, sensor1, sensor2, sensor3)
+        try:
+                transmit(tank_id, sensor1, sensor2, sensor3)
+        except: 
+                print("Error: could not transmit!")
 
         #Sleepy weepy!
         time.sleep(60)
