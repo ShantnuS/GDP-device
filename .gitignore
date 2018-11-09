@@ -2,3 +2,6 @@ tank_id
 git_hash
 *.log
 __pycache__
+*.pyo
+*.pyc
+.vscode
