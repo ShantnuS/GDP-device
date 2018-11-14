@@ -37,13 +37,13 @@ def main(tank_id):
 
     while True:
         #Read sensors
-        os.system('modprobe w1-gpio')
-        os.system('modprobe w1-therm')
+        #os.system('modprobe w1-gpio')
+        #os.system('modprobe w1-therm')
         sensor1 = read_sensor1(ds_object)
         sensor2 = read_sensor2(ds_object)
         sensor3 = read_sensor3(ds_object)
-        os.system('rmmod w1-gpio')
-        os.system('rmmod w1-therm')
+        #os.system('rmmod w1-gpio')
+        #os.system('rmmod w1-therm')
 
         #Transmit to google app engine
         try:
