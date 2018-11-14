@@ -22,9 +22,10 @@ class DS18B20:
 	# Only one pullup resistor is required
 	
 	def __init__(self):
-		# load required kernel modules
-		os.system('modprobe w1-gpio')
-		os.system('modprobe w1-therm')
+		# # load required kernel modules
+		#NO
+		#os.system('modprobe w1-gpio')
+		#os.system('modprobe w1-therm')
 		
 		# Find file names for the sensor(s)
 		base_dir = '/sys/bus/w1/devices/'

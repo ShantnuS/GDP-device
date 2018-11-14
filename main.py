@@ -2,20 +2,18 @@
 import time
 import json
 import logging 
+import os
 import urllib.request
 from ds18b20 import DS18B20
 
-def read_sensor1():
-    x = DS18B20()
-    return x.tempC(0)
+def read_sensor1(ds_object):
+    return ds_object.tempC(0)
 
-def read_sensor2():
-    x = DS18B20()
-    return x.tempC(1)
+def read_sensor2(ds_object):
+    return ds_object.tempC(1)
 
-def read_sensor3():
-    x = DS18B20()
-    return x.tempC(2)
+def read_sensor3(ds_object):
+    return ds_object.tempC(2)
 
 def transmit(tank_id, sensor1, sensor2, sensor3):
     body = {'tankId': tank_id, 'sensor1': sensor1, 'sensor2': sensor2, 'sensor3': sensor3}
@@ -35,12 +33,17 @@ def get_test():
 
 def main(tank_id):
     logging.basicConfig(filename='main.log', format="%(asctime)s %(levelname)s: %(message)s",level=logging.DEBUG)   
+    ds_object = DS18B20()
 
     while True:
         #Read sensors
-        sensor1 = read_sensor1()
-        sensor2 = read_sensor2()
-        sensor3 = read_sensor3()
+        os.system('modprobe w1-gpio')
+        os.system('modprobe w1-therm')
+        sensor1 = read_sensor1(ds_object)
+        sensor2 = read_sensor2(ds_object)
+        sensor3 = read_sensor3(ds_object)
+        os.system('rmmod w1-gpio')
+        os.system('rmmod w1-therm')
 
         #Transmit to google app engine
         try:
